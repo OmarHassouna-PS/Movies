@@ -15,17 +15,91 @@ const options = {
   }
 };
 
-// app.get('/movies', (req, res) => {
-//   fetch('https://reqres.in/api/users?page=2')
-//     .then(resp => resp.json())
-//     .then(data => res.send(data))
-//     .catch(err => res.status(500).send({ error: 'Something went wrong' }));
-// });
 app.get("/movies", (req, res) => {
   axios
     .request(options)
     .then((response) => {
       res.json(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred" });
+    });
+});
+
+app.get("/movies/action", (req, res) => {
+  axios
+    .request(options)
+    .then((response) => {
+      res.json(response.data.filter( (val) => {
+
+        for (let index = 0; index < val.genre.length; index++) {
+          if (val.genre[index] === 'Action') {
+            return val;
+          }
+        }
+      })
+      );
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred" });
+    });
+});
+
+app.get("/movies/drama", (req, res) => {
+  axios
+    .request(options)
+    .then((response) => {
+      res.json(response.data.filter( (val) => {
+
+        for (let index = 0; index < val.genre.length; index++) {
+          if (val.genre[index] === 'drama') {
+            return val;
+          }
+        }
+      })
+      );
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred" });
+    });
+});
+
+app.get("/movies/fantasy", (req, res) => {
+  axios
+    .request(options)
+    .then((response) => {
+      res.json(response.data.filter( (val) => {
+
+        for (let index = 0; index < val.genre.length; index++) {
+          if (val.genre[index] === 'fantasy') {
+            return val;
+          }
+        }
+      })
+      );
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred" });
+    });
+});
+
+app.get("/movies/crime", (req, res) => {
+  axios
+    .request(options)
+    .then((response) => {
+      res.json(response.data.filter( (val) => {
+
+        for (let index = 0; index < val.genre.length; index++) {
+          if (val.genre[index] === 'Crime') {
+            return val;
+          }
+        }
+      })
+      );
     })
     .catch((error) => {
       console.error(error);

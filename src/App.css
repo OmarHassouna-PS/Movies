@@ -1,13 +1,10 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
   gap: 1rem;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid black;
-  padding: 1rem;
+.description {
+  height: 50px;
+  overflow-y: scroll;
 }
